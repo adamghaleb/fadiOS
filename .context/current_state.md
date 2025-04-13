@@ -2,18 +2,18 @@
 
 ## 🔧 Tech Stack
 
-- Next.js (App Router)  
-- Tailwind CSS + Lucide  
-- Supabase (PostgreSQL)  
+- React  
+- Tailwind CSS  
 - TypeScript  
-- GPT-4 (Nova via proxy)  
+- React Scripts  
 
 ## 🧠 Core Modules
 
-- `/components/core/AppShell.tsx`  
-- `/components/ui/`  
-- `/components/panels/NovaPanel.tsx`, `MainPanel.tsx`  
-- `/components/Sidebar.tsx`  
+- `/src/AppShell.tsx`  
+- `/src/ui/`  
+- `/src/panels/NovaPanel.tsx`, `MainPanel.tsx`, `Sidebar.tsx`  
+- `/src/core/layout.ts`, `state.ts`  
+- `/src/dev/DebugOverlay.tsx`, `dev.config.ts`  
 
 ## 🧩 Data Objects
 
@@ -25,13 +25,15 @@
 
 [NovaPanel] [MainPanel] [Sidebar]
 
-Nova always visible on left. Navigation on right. MainPanel changes per view.
+MainPanel in center with flex-grow. Sidebar on right with fixed width (w-28). NovaPanel floating with absolute positioning and high z-index.
 
 ## 🌱 Progress
 
-- [x] Git + Windsurf linked  
+- [x] Git + GitHub repository created  
 - [x] File structure initialized  
-- [x] Tailwind + Lucide installed  
-- [ ] AppShell scaffolded  
-- [ ] DevToolsPanel created  
-- [ ] Initial data seeded  
+- [x] Tailwind CSS installed  
+- [x] AppShell scaffolded  
+- [x] Basic panel components created  
+- [ ] Next.js + Supabase integration  
+- [ ] Nova proxy implementation  
+- [ ] Initial data seeding  
