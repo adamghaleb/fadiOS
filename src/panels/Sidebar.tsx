@@ -13,11 +13,13 @@ const Sidebar: React.FC = () => {
     >
       {isDevMode && <DebugOverlay label="Sidebar" />}
       
-      <div className="flex flex-col items-center space-y-6">
-        <SidebarItemIcon icon="home" label="Home" />
-        <SidebarItemIcon icon="apps" label="Apps" />
-        <SidebarItemIcon icon="settings" label="Settings" />
-        {/* More sidebar items can be added here */}
+      <div className="flex flex-col items-center space-y-4">
+        <SidebarItemIcon icon="f" label="" />
+        <SidebarItemIcon icon="ffff" label="" />
+        <SidebarItemIcon icon="f" label="" />
+        <SidebarItemIcon icon="ff" label="" />
+        <SidebarItemIcon icon="f" label="" />
+        <SidebarItemIcon icon="f" label="" />
       </div>
     </div>
   );

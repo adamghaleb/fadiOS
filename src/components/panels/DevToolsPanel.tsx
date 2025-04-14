@@ -1,12 +1,16 @@
 import React from 'react';
+import { useDevMode } from '../../dev/dev.config';
 
 /**
  * DevToolsPanel - Floating debug panel that displays in development mode
  * Shows system information and layout details
+ * Only visible when dev mode is enabled (toggle with "=" key)
  */
 const DevToolsPanel: React.FC = () => {
-  // Only render in development mode
-  if (process.env.NODE_ENV !== 'development') {
+  const isDevMode = useDevMode();
+  
+  // Only render when dev mode is enabled
+  if (!isDevMode) {
     return null;
   }
 
@@ -34,7 +38,7 @@ const DevToolsPanel: React.FC = () => {
               </div>
               <div className="flex justify-between">
                 <span>Sidebar</span>
-                <span className="font-mono text-green-400">w-28</span>
+                <span className="font-mono text-green-400">w-24</span>
               </div>
             </div>
           </div>
@@ -42,6 +46,12 @@ const DevToolsPanel: React.FC = () => {
           <div className="flex justify-between">
             <span className="text-gray-400">Escalation Level:</span>
             <span className="font-mono text-yellow-400">1</span>
+          </div>
+          
+          <div className="mt-2 pt-2 border-t border-gray-700">
+            <div className="text-xs text-gray-400 italic">
+              Press "=" to toggle dev mode
+            </div>
           </div>
         </div>
       </div>

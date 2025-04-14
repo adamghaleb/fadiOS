@@ -9,11 +9,15 @@ const DEFAULT_DEV_MODE = process.env.NODE_ENV === 'development';
 let devModeEnabled = DEFAULT_DEV_MODE;
 let listeners: Array<(isEnabled: boolean) => void> = [];
 
+// Global event handler to avoid multiple listeners
+let isEventListenerAttached = false;
+
 // Toggle function
 export const toggleDevMode = (): boolean => {
   devModeEnabled = !devModeEnabled;
   // Notify all listeners
   listeners.forEach(listener => listener(devModeEnabled));
+  console.log('Dev mode toggled:', devModeEnabled); // Debug log
   return devModeEnabled;
 };
 
@@ -29,19 +33,23 @@ export const useDevMode = (): boolean => {
     const listener = (enabled: boolean) => setIsEnabled(enabled);
     listeners.push(listener);
     
-    // Setup keyboard shortcut for "=" key
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === '=') {
-        toggleDevMode();
-      }
-    };
+    // Setup keyboard shortcut for "=" key - only once globally
+    if (!isEventListenerAttached) {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === '=') {
+          toggleDevMode();
+        }
+      };
+      
+      window.addEventListener('keydown', handleKeyDown);
+      isEventListenerAttached = true;
+      
+      // We never remove this listener since it's global
+    }
     
-    window.addEventListener('keydown', handleKeyDown);
-    
-    // Cleanup
+    // Cleanup component listener
     return () => {
       listeners = listeners.filter(l => l !== listener);
-      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
   
